@@ -1,0 +1,38 @@
+
+<!--
+Template for an Assignment.
+Evaluated each time the commandAssignment changes
+-->
+<div id="gcliReqTempl">
+  <div>
+    <div class="gcliCmdDesc">
+      ${requ.commandAssignment.getValue().getDescription()}
+    </div>
+    <table class="gcliParams">
+      <tbody class="gcliAssignment"
+          foreach="assignment in ${requ.getAssignments()}">
+        <!-- Parameter -->
+        <tr class="gcliGroupRow">
+          <td class="gcliParamName">
+            <label>${assignment.param.description}:</label>
+            <div class="gcliRequired" if="${!assignment.param.isDataRequired()}">(Optional)</div>
+          </td>
+          <td class="gcliParamInput">${getInputFor(assignment)}</td>
+        </tr>
+        <tr class="gcliGroupRow">
+          <td class="gcliParamError" colspan="2">
+            ${linkMessageElement(assignment, __element)}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="gcliParamSubmit">
+            <input type="submit" value="Cancel" onclick="${onFormCancel}"/>
+            <input type="submit" value="OK" onclick="${onFormOk}"/>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
