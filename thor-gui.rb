@@ -38,6 +38,12 @@ get '/thor-metadata.json' do
   thor_tasks_to_gcli_json(QuietThorRunner.new.list).to_json
 end
 
+post '/thor-execute' do
+  content_type :text
+  # TODO: This sucks in a trillion ways
+  `thor #{@params['cmd']}` 
+end
+
 get '/' do
   redirect '/index.html'
 end
